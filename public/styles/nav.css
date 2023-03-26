@@ -3,9 +3,31 @@ nav {
   width: 100vw;
   background-color: #4056A1;
   color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 1.5em;
 }
 
-nav span {
+.logo {
   font-family: Bungee, sans-serif;
+}
+
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space;
+  font-family: Source Sans pro, sans-serif;
+  font-size: 1.2em;
+}
+
+.new-tweet a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.new-tweet i {
+  margin-top: 5px;
+  color: red;
 }

@@ -23,6 +23,3 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-nav .logo {
-  font-family: Bungee, sans-serif; /* Specify the font family for the logo, with a fallback to sans-serif */
-}

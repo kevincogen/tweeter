@@ -1,6 +1,9 @@
 header {
   height: 520px;
   width: 100vw;
+  background-color: #d79922;
+  background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   display: flex;
   flex-direction: column;
   align-items: center;

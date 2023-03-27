@@ -15,7 +15,7 @@ nav {
   font-family: Bungee, sans-serif;
 }
 
-.new-tweet {
+.write-tweet {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,12 +24,12 @@ nav {
   font-size: 1.2em;
 }
 
-.new-tweet a {
+.write-tweet a {
   color: inherit;
   text-decoration: none;
 }
 
-.new-tweet i {
+.write-tweet i {
   margin-top: 5px;
   color: #f13c20;
 }

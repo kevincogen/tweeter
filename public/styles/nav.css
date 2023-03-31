@@ -19,8 +19,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space;
-  font-family: Source Sans pro, sans-serif;
+  justify-content: space-between;
+  font-family: Source Sans Pro, sans-serif;
   font-size: 1.2em;
 }
 

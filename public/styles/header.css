@@ -1,4 +1,5 @@
-header {
+/* header class = profile */
+.profile {
   height: 520px;
   width: 100vw;
   background-color: #d79922;

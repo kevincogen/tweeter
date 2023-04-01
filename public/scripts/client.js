@@ -1,33 +1,9 @@
-/*
+/*git 
  * Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
+
 
 const createTweetElement = function(tweetData) {
   const $tweet = $(`      
@@ -46,7 +22,7 @@ const createTweetElement = function(tweetData) {
   </div>
   <footer>
     <div>
-      ${tweetData.created_at}
+      ${timeago.format(tweetData.created_at)}
     </div>
     <div>
       <span class="fas fa-flag"></span>
@@ -66,7 +42,25 @@ const renderTweets = function(tweetArr) {
   }
 };
 
+const loadTweets = function() {
+  $.get('/tweets', function(data, status){
+    renderTweets(data);
+  }
+)};
+
+
+//document ready listener
 $(function() {
-  renderTweets(data);
-  console.log("hello...is there anybody in there?");
+
+  //button click (prevent default form submit)
+  $('.tweetform').on('submit', function(event){
+    event.preventDefault();
+    const tweetData = $(this).serialize();
+    $.post('/tweets', tweetData, console.log("posted")); //client posted to server succesfully
+  });
+  
+  loadTweets()
+
+
 });
+//if console logs lyrics in order, our function works :)

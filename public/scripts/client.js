@@ -55,8 +55,16 @@ $(function() {
   //button click (prevent default form submit)
   $('.tweetform').on('submit', function(event){
     event.preventDefault();
+    //validation rules
+    if ($('#tweet-text').val() === "") {
+      alert("Empty Brain? You can't tweet Nothing!")
+      return;
+    } else if ($('#tweet-text').val().length >140) {
+      alert("The Character Length is too damn high!")
+      return;
+    }
     const tweetData = $(this).serialize();
-    $.post('/tweets', tweetData, console.log("posted")); //client posted to server succesfully
+    $.post('/tweets', tweetData)
   });
   
   loadTweets()

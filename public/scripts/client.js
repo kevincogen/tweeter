@@ -10,19 +10,19 @@ const createTweetElement = function(tweetData) {
   <article class="tweet">
   <header>
     <div class="name">
-      <img src=${tweetData.user.avatars}>
-      ${tweetData.user.name}
+      <img src="${$('<div>').text(tweetData.user.avatars).html()}">
+      ${$('<div>').text(tweetData.user.name).html()}
     </div>
     <div class="id">
-      ${tweetData.user.handle}
+      ${$('<div>').text(tweetData.user.handle).html()}
     </div>
   </header>
   <div class="content">
-    ${tweetData.content.text}
+    ${$('<div>').text(tweetData.content.text).html()}
   </div>
   <footer>
     <div>
-      ${timeago.format(tweetData.created_at)}
+      ${$('<div>').text(timeago.format(tweetData.created_at)).html()}
     </div>
     <div>
       <span class="fas fa-flag"></span>
@@ -38,7 +38,7 @@ const createTweetElement = function(tweetData) {
 const renderTweets = function(tweetArr) {
   for (const obj of tweetArr) {
     const $tweet = createTweetElement(obj);
-    $('#tweets-container').append($tweet);
+    $('#tweets-container').prepend($tweet);
   }
 };
 
@@ -52,19 +52,25 @@ const loadTweets = function() {
 //document ready listener
 $(function() {
 
-  //button click (prevent default form submit)
+  //Tweet button click
   $('.tweetform').on('submit', function(event){
     event.preventDefault();
+
     //validation rules
     if ($('#tweet-text').val() === "") {
       alert("Empty Brain? You can't tweet Nothing!")
       return;
-    } else if ($('#tweet-text').val().length >140) {
+    } else if ($('#tweet-text').val().length > 140) {
       alert("The Character Length is too damn high!")
       return;
     }
+
+    //serialize tweet and post to server
     const tweetData = $(this).serialize();
     $.post('/tweets', tweetData)
+
+    //render new tweet sans refresh
+    loadTweets()
   });
   
   loadTweets()

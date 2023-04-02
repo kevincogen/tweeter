@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-
+//escape input text in temp div with .text() to .html()
 const createTweetElement = function(tweetData) {
   const $tweet = $(`      
   <article class="tweet">
@@ -51,23 +51,27 @@ const loadTweets = function() {
 
 //document ready listener
 $(function() {
-
+$(".data-error").hide()
   //Tweet button click
   $('.tweetform').on('submit', function(event){
     event.preventDefault();
+    $(".data-error").hide() 
 
     //validation rules
     if ($('#tweet-text').val() === "") {
-      alert("Empty Brain? You can't tweet Nothing!")
+      const noChars = $('<p>EmptyBrain? You can\'t tweet nothing!</p>')
+      $('.data-error').slideDown().empty().append(noChars)
       return;
     } else if ($('#tweet-text').val().length > 140) {
-      alert("The Character Length is too damn high!")
+      const tooManyChars = $('<p>The Character Length is too damn high!</p>')
+      $('.data-error').show().slideDown().empty().append(tooManyChars)
       return;
     }
 
     //serialize tweet and post to server
     const tweetData = $(this).serialize();
-    $.post('/tweets', tweetData)
+    $.post('/tweets', tweetData);
+    $('#tweet-text').val('')
 
     //render new tweet sans refresh
     loadTweets()

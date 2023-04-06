@@ -8,7 +8,6 @@ nav {
   align-items: center;
   padding: 1.5em;
   position: fixed;
-  top: 0;
 }
 
 .logo {
@@ -33,3 +32,19 @@ nav {
   margin-top: 5px;
   color: #f13c20;
 }
+
+ /* For Tablet and Mobile */
+ @media only screen and (max-width: 1024px) {
+  nav {
+    height: 120px;
+    width: 100vw;
+    background-color: #d79922;
+    background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em;
+    position: fixed;
+  }
+} 

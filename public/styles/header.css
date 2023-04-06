@@ -1,7 +1,11 @@
 /* header class = profile */
+
+/* For Desktop */
 .profile {
-  height: 520px;
-  width: 100vw;
+  height: 400px;
+  width: 600px;
+  margin-left: 50px;
+  margin-top: 200px;
   background-color: #d79922;
   background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
@@ -9,4 +13,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+}
+
+/* For Tablet and Mobile */
+@media only screen and (max-width: 1024px) {
+  .profile {
+    height: 520px;
+    width: 100vw;
+    margin-left: 0;
+    margin-top: 0; 
+    background-color: #d79922;
+    background-image: url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }

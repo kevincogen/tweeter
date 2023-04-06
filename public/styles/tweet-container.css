@@ -37,6 +37,7 @@ article.tweet header div.id {
 article.tweet div.content {
   padding: 1em 0.5em;
   border-bottom: #50504B 0.15em solid;
+  word-wrap: break-word;
 }
 
 article.tweet footer {
@@ -53,4 +54,24 @@ article.tweet span.fas {
 
 article.tweet span.fas:hover {
   color: #BE9637;
+}
+
+/* Mobile and Tablet */
+@media only screen and (max-width: 1024px) {
+  article.tweet {
+    max-width: 800px; /* set new max-width */
+    width: 80vw; /* set new width */
+  }
+
+  article.tweet header img {
+    height: 2.5em; /* increase image height */
+  }
+
+  article.tweet div.content {
+    padding: 1em 0.8em; /* adjust padding */
+  }
+
+  article.tweet footer {
+    font-size: 0.6em; /* adjust font size */
+  }
 }

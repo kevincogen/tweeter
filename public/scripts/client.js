@@ -4,6 +4,9 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+//Helper Functions:
+
+//Format tweet object into html
 //escape input text in temp div with .text() to .html()
 const createTweetElement = function(tweetData) {
   const $tweet = $(`      
@@ -35,19 +38,24 @@ const createTweetElement = function(tweetData) {
   return $tweet;
 };
 
+//render tweet elements
 const renderTweets = function(tweetArr) {
+  $('#tweets-container').html("");
   for (const obj of tweetArr) {
     const $tweet = createTweetElement(obj);
     $('#tweets-container').prepend($tweet);
+    console.log("1 tweet")
   }
 };
-
+//call to action
 const loadTweets = function() {
-  $.get('/tweets', function(data, status){
+  $.ajax({
+    url: '/tweets',
+    method: 'GET'
+  }).then(function(data) {
     renderTweets(data);
-  }
-)};
-
+  });
+};
 
 //document ready listener
 $(function() {
@@ -56,10 +64,9 @@ $(".data-error").hide()
   $('.tweetform').on('submit', function(event){
     event.preventDefault();
     $(".data-error").hide() 
-
     //validation rules
     if ($('#tweet-text').val() === "") {
-      const noChars = $('<p>EmptyBrain? You can\'t tweet nothing!</p>')
+      const noChars = $('<p>Empty Brain? You can\'t tweet nothing!</p>')
       $('.data-error').slideDown().empty().append(noChars)
       return;
     } else if ($('#tweet-text').val().length > 140) {
@@ -67,18 +74,14 @@ $(".data-error").hide()
       $('.data-error').show().slideDown().empty().append(tooManyChars)
       return;
     }
-
     //serialize tweet and post to server
     const tweetData = $(this).serialize();
-    $.post('/tweets', tweetData);
-    $('#tweet-text').val('')
-
-    //render new tweet sans refresh
-    loadTweets()
+    $.post('/tweets', tweetData, function() {
+      $('#tweet-text').val('')
+      //render new tweet sans refresh
+      loadTweets()
+    });
   });
   
   loadTweets()
-
-
 });
-//if console logs lyrics in order, our function works :)

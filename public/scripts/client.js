@@ -79,6 +79,7 @@ $(function() {
       $('#tweet-text').val('');
       //render new tweet sans refresh
       loadTweets();
+      $(".counter").html("140");
     });
   });
   

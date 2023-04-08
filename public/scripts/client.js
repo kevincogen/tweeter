@@ -1,4 +1,4 @@
-/*git 
+/*git
  * Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
@@ -44,7 +44,6 @@ const renderTweets = function(tweetArr) {
   for (const obj of tweetArr) {
     const $tweet = createTweetElement(obj);
     $('#tweets-container').prepend($tweet);
-    console.log("1 tweet")
   }
 };
 //call to action
@@ -59,29 +58,29 @@ const loadTweets = function() {
 
 //document ready listener
 $(function() {
-$(".data-error").hide()
+  $(".data-error").hide();
   //Tweet button click
-  $('.tweetform').on('submit', function(event){
+  $('.tweetform').on('submit', function(event) {
     event.preventDefault();
-    $(".data-error").hide() 
+    $(".data-error").hide();
     //validation rules
     if ($('#tweet-text').val() === "") {
-      const noChars = $('<p>Empty Brain? You can\'t tweet nothing!</p>')
-      $('.data-error').slideDown().empty().append(noChars)
+      const noChars = $('<p>Empty Brain? You can\'t tweet nothing!</p>');
+      $('.data-error').slideDown().empty().append(noChars);
       return;
     } else if ($('#tweet-text').val().length > 140) {
-      const tooManyChars = $('<p>The Character Length is too damn high!</p>')
-      $('.data-error').show().slideDown().empty().append(tooManyChars)
+      const tooManyChars = $('<p>The Character Length is too damn high!</p>');
+      $('.data-error').show().slideDown().empty().append(tooManyChars);
       return;
     }
     //serialize tweet and post to server
     const tweetData = $(this).serialize();
     $.post('/tweets', tweetData, function() {
-      $('#tweet-text').val('')
+      $('#tweet-text').val('');
       //render new tweet sans refresh
-      loadTweets()
+      loadTweets();
     });
   });
   
-  loadTweets()
+  loadTweets();
 });
